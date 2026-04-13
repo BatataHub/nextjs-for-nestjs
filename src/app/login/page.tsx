@@ -1,11 +1,11 @@
-import { LoginForm } from '@/components/admin/LoginForm';
+import { LoginForm } from '@/components/LoginForm';
 import ErrorMessage from '@/components/ErrorMessage';
 import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Login - Admin',
+  title: 'Login',
 };
 
 export default async function AdminLoginPage() {
@@ -15,7 +15,7 @@ export default async function AdminLoginPage() {
     return (
       <ErrorMessage
         contentTitle='403'
-        content='Libere o sistema de login para acessar esta página'
+        content='Libere o sistema de login usando ALLOW_LOGIN'
       />
     );
   }

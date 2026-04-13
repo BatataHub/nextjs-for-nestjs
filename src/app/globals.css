@@ -1,3 +1,6 @@
 @import 'tailwindcss';
-@source "../src/**/*.{html,js,jsx,ts,tsx}"; /* Ajuste o caminho conforme sua estrutura */
 @plugin "@tailwindcss/typography";
+
+.niceInput {
+  @apply pointer-events-none absolute w-0 h-0 overflow-hidden opacity-0;
+}
