@@ -4,6 +4,7 @@ import { PostHeading } from '../PostHeading';
 import { PostDate } from '../PostDate';
 import { SafeMarkdown } from '../SafeMarkdown';
 import { notFound } from 'next/navigation';
+import { shouldUseUnoptimizedImage } from '@/utils/should-use-unoptimized-image';
 
 type SinglePostProps = {
   slug: string;
@@ -17,6 +18,8 @@ export async function SinglePost({ slug }: SinglePostProps) {
   }
 
   const post = postRes.data;
+  const unoptimizedCoverImage = shouldUseUnoptimizedImage(post.coverImageUrl);
+
   return (
     <article className='mb-16'>
       <header className='group flex flex-col gap-4 mb-4'>
@@ -26,6 +29,7 @@ export async function SinglePost({ slug }: SinglePostProps) {
           width={1200}
           height={720}
           alt={post.title}
+          unoptimized={unoptimizedCoverImage}
         />
 
         <PostHeading url={`/post/${post.slug}`}>{post.title}</PostHeading>

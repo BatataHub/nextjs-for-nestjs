@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import { shouldUseUnoptimizedImage } from '@/utils/should-use-unoptimized-image';
 
 type PostCoverImageProps = {
   imageProps: React.ComponentProps<typeof Image>;
@@ -8,6 +9,10 @@ type PostCoverImageProps = {
 };
 
 export function PostCoverImage({ imageProps, linkProps }: PostCoverImageProps) {
+  const unoptimized =
+    typeof imageProps.src === 'string' &&
+    shouldUseUnoptimizedImage(imageProps.src);
+
   return (
     <Link
       {...linkProps}
@@ -21,6 +26,7 @@ export function PostCoverImage({ imageProps, linkProps }: PostCoverImageProps) {
     >
       <Image
         {...imageProps}
+        unoptimized={imageProps.unoptimized ?? unoptimized}
         className={clsx(
           'w-full',
           'h-full',
